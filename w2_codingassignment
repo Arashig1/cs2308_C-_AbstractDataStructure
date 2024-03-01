@@ -1,0 +1,83 @@
+//Programmer : Arashi Gautam
+//Date: 1/29/2022
+//Program : To print fib series , power series and conditional series 
+#include <iostream>
+using namespace std;
+
+//Function fibonacci series
+void fibonacciSeries( int n ){
+	
+	 int a = 0 ; int b = 1 ; int c;
+	 cout<<"Fibonacci Series: " << endl;
+	 cout  << a << " "<< b <<" ";
+	 for (int i = 2 ; i < n ; i++){
+	 c = a + b ;
+	 cout <<c<< " ";
+	 a = b;
+	 b = c;
+
+	 }
+	 cout<<endl;
+
+}
+
+//Function Power series 
+void powerSeries( int x , int n ){
+	 int sq = 1;
+	 int i, m;
+	 cout <<endl;
+	 cout<<"Power Series : " ;
+	 cout <<endl;
+	 
+	 for( i = 0; i <= n ; i++){
+	 cout<< sq << " " ;
+	 	 sq *= x;
+	 	
+	 }
+	 cout<<endl;
+	 
+}
+
+//Implementing the conditionalSeries fucntion
+
+void conditionalSeries( int n ){
+	cout<<endl;
+	cout <<"Conditional Series: "<<endl;	
+	for ( int i = 1; i<=n ; i++){
+		if ( i % 3 == 0 && i % 5 == 0 ){
+			cout <<"FizzBuzz" <<" "; 
+			}
+		else if ( i % 3 == 0 ){
+			cout <<"Fizz"<<" ";
+			}
+		else if (  i % 5 == 0 ){
+			cout <<"Buzz"<<" ";
+		}	
+		else {
+			cout << i <<" ";
+		}
+			
+
+		}
+	}
+
+
+int main(){
+	int m ,b ;
+	cout << " Enter a positive number (m): ";
+	cin >> m;
+	cout<< "Enter an integer (b) for Power Series: ";
+	cin >> b;
+	
+	cout <<endl;
+	//Calling fibonacciSeries function
+	fibonacciSeries(m);
+	
+	//Calling powerSeries function
+	powerSeries(b,m);
+	
+	//Calling conditionalSereis Fucntion
+	conditionalSeries(m);
+	
+	return 0;
+}
