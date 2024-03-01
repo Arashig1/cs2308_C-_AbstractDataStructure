@@ -1,0 +1,86 @@
+//Programmmer: Arashi Gautam
+//Date 2/21/2023
+//Program that utilizes pointers, structs, and functions to manage student information.
+
+
+
+#include <iostream>
+#include<string>
+
+using namespace std;
+
+struct Student {
+	int student_ID;
+	string name;
+	float GPA;
+	
+};
+
+//declare functions
+void initializeStudent(Student* student);
+void displayStudent(const Student* student);
+void updateGPA(Student* student, float newGPA);
+
+int main(){
+	int rosterSize;
+	cout<<"Enter the number of students: ";
+	cin>>rosterSize;
+	
+	//Array to store students records	
+	Student classRoster[rosterSize];
+	
+	//Initialize each student in the array with default values
+	for(int i = 0;i<rosterSize;i++){
+		initializeStudent(&classRoster[i]);
+	}
+	
+	//Display the details of each students
+	cout<<"\n-----------------Class Roster--------------------------- \n "<<endl;
+	for (int i =0 ; i < rosterSize; i++){
+		cout<<"Student "<<i+1<<":"<<endl;
+		displayStudent(&classRoster[i]);
+		cout<<endl;
+		
+	}
+	
+	//Update GPA of a selected student 
+	int selectedStudentIndex;
+	cout<<"Enter the index of the student to update GPA (1-"<<rosterSize<<"):"; //giving the range so they enter within the roostersize
+	cin>>selectedStudentIndex;
+	
+	if (selectedStudentIndex >= 1 && selectedStudentIndex<=rosterSize){
+		float newGPA;
+		cout<<"Enter new GPA: "<<selectedStudentIndex<<":";
+		cin>>newGPA;
+		updateGPA(&classRoster[selectedStudentIndex-1],newGPA);
+		
+		//Display the updated details of the selected student
+		cout<<"\nUpdated Details of student "<<selectedStudentIndex<<":"<<endl;
+		displayStudent(&classRoster[selectedStudentIndex-1]);
+	} else{
+		cout<<"\nInvalid Student Index."<<endl;
+	}
+	return 0;
+	
+}
+
+//Fucntion to initialized a student with default values
+void initializeStudent(Student* student){
+
+	(*student).student_ID = 0;
+	(*student).name = "Unknown";
+	(*student).GPA = 0;
+	
+}
+
+//Fucntion to display the details of a student
+void displayStudent(const Student* student){
+	cout<<"Student ID: "<<(*student).student_ID<<endl;
+	cout<<"Name: "<<(*student).name<<endl;
+	cout<<"GPA: "<<(*student).GPA<<endl;	
+}
+
+//function to update the GPA of a student 
+void updateGPA(Student* student, float newGPA){
+	(*student).GPA = newGPA;	
+}
