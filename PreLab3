@@ -1,0 +1,112 @@
+//Programmer: Arashi Gautam
+//Date: 02/06/2025
+
+
+//Recieve a list of Items unsorted form input base size less than 10 items
+//Get one element form user and check is it available on our list or not 
+//Print if available or not 
+//To have sorted list by sorting functions
+
+#include <iostream>
+
+using namespace std;
+
+//Customized Functions Prototypes
+void getArrayListFunc(int temparray[], int &tempsize);
+bool searchInArray( int tempArray[], int tempsize, int tempitem); 
+void sortDescendingFunc(int tempArry[], int tempsize);
+void sortAscendingFunc(int tempArry[], int tempsize);
+void printArray(int tempArray[], int tempsize);
+
+//Main function 
+int main(){
+	int maxSize = 10 ;
+	int myarray[maxSize];
+	int size = 0 ;
+	int item;
+	
+	getArrayListFunc(myarray, size);
+	
+	//Ask the user to enter the item  to searhc in the array 
+	
+	cout<<"Enter an item valye to search in array :";
+	cin>>item;
+	if (searchInArray(myarray, size, item)){
+		cout<<"Yes, item is founded in the array list."<<endl;
+	}
+	else {
+		cout<<"No, Item is not available in the list."<<endl;
+	}
+	
+	cout<<"-------Descending order sort---------------------------\n";
+    sortDescendingFunc(myarray, size);
+    printArray(myarray, size);
+    cout<< endl;
+    cout<<"-------Ascending order sort-----------------------------\n";
+    sortAscendingFunc(myarray, size);
+    printArray(myarray, size);
+    return 0;
+   	
+}
+
+//Implementing our customized function
+void getArrayListFunc(int temparray[], int &tempsize){
+    //int tempSize=0;
+    do {
+        cout<<"Please, Enter the size of Array as N (0<N<=10): ";
+        cin>> tempsize;
+    }while ((tempsize<=0)||(tempsize>10));
+    
+    cout<<"Enter the List elements : \n";
+    for (int i=0; i<tempsize; i++){
+        cout<<"Enter element ["<<i<<"]:";
+        cin>>temparray[i];
+    }
+    cout<<"The Input Array recived! \n";
+}
+// Search in Array
+bool searchInArray(int tempArray[], int tempsize, int tempitem){
+    bool tempRes=false;
+    for(int i=0; i<tempsize; i++){
+        if (tempitem==tempArray[i])
+            tempRes=true;
+    }
+    return tempRes;
+}
+
+// Implement the descending Sort function
+void sortDescendingFunc(int tempArry[], int tempsize){
+    
+    for(int i=0; i<tempsize; i++){
+        for(int j=0; j<i; j++){
+            if (tempArry[j]<tempArry[i]){
+                int temp=tempArry[j];
+                tempArry[j]=tempArry[i];
+                tempArry[i]=temp;
+            }
+        }
+    }
+}
+
+// Aescaending sort order
+void sortAscendingFunc(int tempArry[], int tempsize){
+    
+    for(int i=0; i<tempsize; i++){
+        for(int j=0; j<i; j++){
+            if (tempArry[j]>tempArry[i]){
+                int temp=tempArry[j];
+                tempArry[j]=tempArry[i];
+                tempArry[i]=temp;
+            }
+        }
+    }
+}
+
+// implement the print function
+void printArray(int tempArray[], int tempsize){
+    cout<<" \nThe Sorted List is :\n";
+    for (int i=0; i<tempsize; i++)
+        cout<<tempArray[i]<<"  ";
+    cout<<endl;
+}
+
