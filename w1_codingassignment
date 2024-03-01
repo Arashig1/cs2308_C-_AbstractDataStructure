@@ -1,0 +1,49 @@
+//Programmmer:Arashi gautam
+//Date: 1/22/2024
+#include <iostream>
+#include <iomanip>
+using namespace std;
+int main (){
+	int input , sum = 0 , count = 0;
+	cout<<"Enter a positive number : " ;
+	cin >> input;
+	
+	if (input <=0 ){
+		cerr<<"Invalid input. Please enter a positive integer ."<<endl;
+		return 1;
+		
+		
+	}
+	
+	//Calulating the sum of odd number from 1 to num
+	
+	for (int i = 1; i<= input ;i+=2){
+		sum+=i;
+		count++;
+		
+	}
+
+	//Type casting to float 
+	
+	float average = static_cast<float>(sum)/count;
+	
+	//Output
+	cout<<" The sum of odd number from 1 to "<< input << " is "<< sum  << " (";
+	
+	 for (int i =1 ; i <= input ; i+=2){
+	 	cout<<i;
+	 	if (i<input-1){
+	 		cout<<"+";
+	 		
+		 }
+	 }
+	 cout <<")"<<endl;
+	 
+	 //display average
+	 cout<<"Average:"<<fixed<<setprecision(2)<<average<<endl;
+	 
+	 return 0;
+	 	
+	
+	
+}
