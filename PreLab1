@@ -1,0 +1,65 @@
+// Programmer: Arashi Gautam
+// Date: 1/23/2024
+
+// Unit One Functions Prelab 1
+
+// Program: Calculations on Series of Power Func(x,y) and Fibonacci(x)
+
+
+ // Program: Calculation of Series of Power(x, y) func and Fibonacci(x)
+
+#include <iostream>
+//#include <cmath>
+
+using namespace std;
+
+// Function prototypes
+double powFunc(double x, int y);
+int fibFunc(int x);
+
+int main() {
+
+    int n;
+    // do while: to make sure the user enters a valid range of input.
+    do {
+        cout << "Enter a positive (n >= 1) number and Less than or equal 10: ";
+        cin >> n;
+    } while (n > 10 || n < 1);  // !((n <= 10) && (n >= 1))
+
+    // Call the our customized functions.
+    cout << "\nPrint the series of divided value of (i^3)/Fib(i) for i from 1 to " << n << " : \n";
+    for (int i = 1; i <= n; i++) {
+        cout << "#" << i << " : " << powFunc(i, 3) / fibFunc(i) << endl;
+    }
+
+    // Program second part
+    cout << "\nSecond part to print fib tree for i from 1 to " << n << ":\n";
+    for (int i = 1; i <= n; i++) {
+        for (int y = 1; y <= i; y++)
+            cout << fibFunc(y) << "   ";
+        cout << endl;
+    }
+
+    // Just a message of ending the program!
+    cout << "Program has ended!\n";
+    return 0;
+}
+
+// Implement your customized functions
+// Implement power (x, y)
+double powFunc(double x, int y) {
+    double res = 1;
+    for (int i = 1; i <= y; i++)
+        res *= x;
+    return res;
+}
+
+// Implement fibFunc(x)
+int fibFunc(int x) {
+    if (x == 1 || x == 2)
+        return 1;
+    else if (x > 2)
+        return (fibFunc(x - 1) + fibFunc(x - 2));
+    else
+        return 0;
+}
