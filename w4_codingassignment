@@ -1,0 +1,162 @@
+//Programmer: Arashi Gautam
+//Date: 2/5/2024
+#include<iostream>
+#include<string>
+using namespace std;
+
+const int maxBookCapacity = 100;
+
+//Define Book Struct 
+
+struct Book{
+	string title;
+	string author;
+	string ISBN;
+	bool available;
+};
+
+//Fucntion Prototype
+void addBook(Book library[], int &numBooks);
+void checkoutBook(Book library[], int numBooks);
+void returnBook(Book library[], int numBooks);
+void displayBook(Book library[], int numBooks);
+
+int main (){
+	//Declare an array of Book structures named library with maximum capcity
+	
+	Book library[maxBookCapacity];
+	int numBooks = 0 ;
+	int choice;
+	
+	//Loops to display the menu allowing user to interact with the library
+	do{
+		cout<<"\n Library Management System Menu \n ";
+		cout<<"1. Add Book \n ";
+		cout<<"2. Check out a book \n ";
+		cout<<"3. Return a book \n ";
+		cout<<"4. Display available books \n";
+		cout<<" 5. Exit \n";
+		
+		cout <<"Enter your choice: ";
+		cin >> choice ;
+		
+		switch( choice){
+			case 1:
+				addBook(library, numBooks);
+				break;
+			case 2:
+				checkoutBook(library, numBooks);
+				break;
+			case 3:
+				returnBook(library, numBooks);
+				break;			
+			case 4:
+				displayBook(library, numBooks);
+				break;
+			case 5:
+				cout<<"Existing the program. \n ";
+				
+				break;
+				
+			default:
+			cout<<" Invalid choice. Please try again. \n";	
+		}
+		
+	}while(choice!= 5);
+	
+	return 0;
+	
+	
+}
+
+//Fucntion to add a book to the library
+void addBook(Book library[], int &numBooks){
+	if (numBooks <= maxBookCapacity){
+		cout<<"Enter book title :  ";
+		cin.ignore();
+		getline(cin, library[numBooks].title);
+
+		cout<<"Enter the author  : ";
+		getline(cin, library[numBooks].author);
+		
+		cout<<"Enter ISBN : ";
+		getline(cin, library[numBooks].ISBN);
+		
+		library[numBooks].available = true;
+		numBooks++;
+		
+		cout<<"Book added successfully. \n ";
+	
+	}
+	else{
+		
+		cout<<"Library is full .Cannnot Add more books. \n";
+		
+	}
+}
+
+//Fucntion to check out a book 
+void checkoutBook(Book library[], int numBooks){
+cout<<"Enter the ISBN of the book you want to check out : ";
+string ISBN;
+cin>>ISBN;
+for ( int i =0 ; i < numBooks; i++){
+	if (library[i].ISBN == ISBN ){
+		if(library[i].available){
+			library[i].available = false;
+			cout <<" Books checked out successfully \n .";
+
+		}
+		else{
+			cout<<"Sorry, the book is already checked out. \n ";
+			
+		}
+		return;
+	}
+}
+
+cout<<"Book not found. \n ";
+
+	
+}
+
+//Fucntion to return a book 
+void returnBook(Book library[], int numBooks){
+	cout<<"Enter the ISBN of the book you want to check out : ";
+	string ISBN;
+	cin>>ISBN;
+		for ( int i =0 ; i < numBooks; i++){
+			if (library[i].ISBN == ISBN ){
+				if(library[i].available){
+					library[i].available = true;
+					cout <<" Books returned  successfully \n .";
+
+				}
+				else{
+			cout<<"The book is already available . \n ";
+			
+					}
+		return;
+	}
+}
+
+cout<<"Book not found. \n ";
+
+	
+}
+
+//Function to display book 
+void displayBook(Book library[], int numBooks){
+	cout<<"Available Books : \n";
+	for (int i = 0 ; i <numBooks ; i++){
+		if (library[i].available){
+			cout<<"\n-------------------------------------------------------------\n";
+			cout<<"---------------All the Books that are available in the library.------------\n";
+			cout<<"Title: "<<library[i].title<<endl;
+			cout<<"Author: "<<library[i].author <<endl;
+			cout<<"ISBN: "<<library[i].ISBN<<endl;
+			cout<<endl;
+		}
+	}
+	
+}
