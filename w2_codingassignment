@@ -1,4 +1,4 @@
-//Programmer : Arashi Gautam
+///Programmer : Arashi Gautam
 //Date: 1/29/2022
 //Program : To print fib series , power series and conditional series 
 #include <iostream>
