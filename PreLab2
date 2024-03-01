@@ -1,0 +1,142 @@
+//W# unit 1 : Prelab2 
+//Programmer: Arashi Gautam
+//Date : 1/31/2024
+
+//Create a student strict that include members : firstName, lastName ,GPA , grades
+//Create a function to get information of each student 
+//Create funtion to calculate the student GPA 
+//Create function to print out the each student information 
+// Prgram support for n student based on n as input parmeter form user. (40>n>0)
+//Create other function to pass the entire class2308 Array and print the list of students
+
+#include<iostream >
+#include<string>
+
+using namespace std;
+
+//define student structure
+
+const int maxExams = 5 ;
+
+struct student{
+	string firstName;
+	string lastName;
+	float grades[maxExams];
+	float GPA;
+};
+
+//Declare your customized function prototype 
+
+student recieveStudentInfo();
+void printStudentInfo(student &curStu);
+void calGPA(student &curStu);
+
+void printEntireclassInfo(student curclass[], int &numStudent);
+
+// Test your customized fucntion through the main() function
+int main(){
+	const int maxEnroll = 40 ;
+	student class2308 [maxEnroll];
+	
+	int numEnroll = 0;
+	
+	do {
+		cout <<"Enter number of student in class cs2308 [0<n<40] : ";
+		cin>>numEnroll;
+		
+	}	while ((numEnroll>40 )||(numEnroll <1 ));
+	
+	for (int i = 0 ; i<numEnroll ; i++){
+		
+		cout <<"----------------------------------"<<endl;
+		cout <<"Enter Information for student [" << ( i + 1 ) <<"] : \n ";
+		class2308[i] = recieveStudentInfo(); // Receive student info 
+		
+		calGPA(class2308[i]); //calculate current student GPA
+		
+	}
+	
+	cout<<" Print out the list of students with details : \n ";
+	
+	for (int i = 0 ; i<numEnroll ; i++){
+		
+		cout<<"---------------------------"<<endl;
+		printStudentInfo(class2308[i]);
+		cout<<"-------------------------- \n ";
+		
+	}
+	
+	cout <<" \n Print out the Entire Class List one more time : \n ";
+	printEntireclassInfo(class2308 , numEnroll);
+	
+	return 0 ;
+		
+}
+
+///-------------------------------------
+//Implemment your customized fucntion 
+student recieveStudentInfo (){
+	
+	student temp;
+	cout<<"Enter current Student FirstName : ";
+	cin >> temp.firstName;
+	cout<<"Enter current Student LastName : ";
+	cin >> temp.lastName;
+	cout<<"\n ENter grades of 5 Exams : \n ";
+	for ( int j = 0 ; j < maxExams ; j++ ){
+		cout<<"Exams["<< (j + 1)<<"]:";
+		cin >> temp.grades[j];
+		
+	}
+	return temp;
+	
+}
+//------------------------------------------
+void printStudentInfo(student &curStu){
+	cout<<" First Name : " << curStu.firstName<<endl;
+	cout<<" Last Name : "<< curStu.lastName<<endl;
+	cout<<" GPA : " << curStu.GPA<<endl;
+	cout<<" Exam grades: ";
+	for ( int i =0 ; i < maxExams ; i++){
+		cout << curStu.grades[i]<<"   ";
+	}
+}
+
+//-------------------------------------------
+
+void calGPA(student &curStu){
+	float tempGPA = 0 ;
+	float tempTotal = 0 ;
+	for ( int i = 0 ; i < maxExams ; i++){
+		tempTotal += curStu.grades[i];
+	}
+	
+	tempGPA = tempTotal / maxExams;
+	curStu.GPA = tempGPA; 
+	
+	
+}
+
+//-------------------------------------------
+
+void printEntireclassInfo(student curClass[], int &numStudent ){
+	cout <<" List of the student for class of 2308 : " << endl;
+	for (int i = 0 ; i < numStudent ; i ++ ){
+		
+		cout <<"++++++++++++++++++++++++++++++++++"<<endl;
+		cout <<"Student ["<<( i + 1) <<"]:\n";
+		cout<<" First Name : " <<curClass[i].firstName<<endl;
+		cout<<" Last Name : " <<curClass[i].lastName<<endl;
+		cout<<" Student GPA : " <<curClass[i].GPA<<endl;
+		cout<<"\n Exam grades : ";
+		for ( int j = 0 ; j < maxExams ; j++ ){
+			cout<<curClass[i].grades[j]<<"   ";
+		}
+		cout<<endl;
+		
+		
+	}
+}
+
+
+ 
