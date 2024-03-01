@@ -1,0 +1,94 @@
+//W6_unit3_prelab5
+//Topic : ponters and synamically management memory 
+//Programmer: Arashi Gautam
+
+
+
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+struct student {
+	string name;
+	string NetID;
+	int age;
+	float grade;
+	student* next;
+};
+
+//Declare customized function 
+student *getStudentInfo();
+void printStudentInfo(student* currStd);
+
+int main(){
+	
+	student* Listcs2308 = nullptr;
+	student* newStudent = new student;
+	newStudent = getStudentInfo(); //gets students info
+	
+	printStudentInfo(newStudent);// to print the info
+	
+	int intArr[]={ 40, 50 , 70 , 80 };
+	float floatArr[]= {40.4,50.5,60.6,70.7,80.8};
+	double doubleArr[]={14.5,15.5,16.5,17.5,18.5};
+	
+	//integer elements print address of elements and values 
+	int *intptr = nullptr;
+	intptr = intArr;
+	cout<<"Address and value of integer elements from array: "<<endl;
+	for(int i =0 ; i<(sizeof(intArr)/sizeof(int));i++){
+		cout<<"The element Address = "<<intptr+i<<"&value = "<<*(intptr+i)<<endl;
+		
+	}
+	
+	//float elements print address of elements and values 
+	float* floatPtr = nullptr;
+	floatPtr = floatArr;
+	cout<<"\n--------------------------\n"<<"Address and values of loat elements from array:  "<<endl;
+	for(int i =0 ; i<(sizeof(doubleArr)/sizeof(double ));i++){
+		cout<<"The element Address = "<<floatPtr+i <<"&value = "<<*(floatPtr+i)<<endl;
+			}	
+	//double elements print address of elements and values 
+	double* doublePtr = doubleArr;
+
+	cout<<"\n--------------------------\n"<<"Address and values of loat elements from array:  "<<endl;
+	for(int i =0 ; i<(sizeof(doubleArr)/sizeof(double ));i++){
+		cout<<"THe element Address = "<<doublePtr+i<<"&value = "<<*(doublePtr+i)<<endl;
+			}				
+	
+	
+	return 0;
+	
+	
+	
+}
+
+//To get students info 
+student* getStudentInfo(){
+	student* temp = new student;
+	cout<<"\nEnter student informations as following: \n";
+	cout<<"Enter Name: ";
+	cin>>(*temp).name;
+	cout<<"Enter NetID: ";
+	cin>>(*temp).NetID;
+	cout<<"Enter Age: ";
+	cin>>(*temp).age;
+	cout<<"Enter Grade: ";
+	cin>>(*temp).grade;
+	(*temp).next = nullptr;
+	return temp;
+	
+	}
+	
+//to print student info 
+void printStudentInfo(student* currStd){
+	cout<<"Current Student Info : \n"
+	<<" Name = "<<(*currStd).name
+	<<"\n NetID = "<<(*currStd).NetID
+	<<"\n Age = "<<(*currStd).age
+	<<"\n Grade = "<<(*currStd).grade<<endl;
+	
+	
+	
+}	
